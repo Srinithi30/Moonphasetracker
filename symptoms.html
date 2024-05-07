@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MoonPhase Tracker - Notes</title>
+  <style>
+    body {
+      background-color: #f8d7da;
+      color: #c2185b; /* Changed font color to black */
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    header {
+      background-color: #fff;
+      padding: 10px;
+      text-align: left;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin: 0;
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 80vh;
+    }
+
+    .notes-container {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      width: 70%;
+      max-width: 600px;
+      margin-top: 50px;
+    }
+
+    .add-notes, .symptoms {
+      flex: 1; /* Equal width for both containers */
+      text-align: left;
+      margin-bottom: 30px; /* Increased space between ADD NOTES and Symptoms */
+    }
+
+    .symptoms {
+      text-transform: uppercase; /* Convert to uppercase */
+    }
+
+    .checkbox-group {
+      text-align: left;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input[type="checkbox"] {
+      margin-right: 5px;
+    }
+
+    .remainder-notes {
+      text-align: left;
+      margin-top: 20px;
+      width: 80%; /* Made wider */
+      margin-left: 10%; /* Centered by adding left margin */
+    }
+
+    textarea {
+      width: 100%;
+      height: 100px;
+      resize: none;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>MoonPhase Tracker</h1>
+  </header>
+
+  <main>
+    <div class="notes-container">
+      <div class="add-notes">
+        <h1 style="font-size: 3em;">ADD NOTES</h1>
+        <div class="checkbox-group">
+          <label><input type="checkbox"> Period starts today</label>
+          <label><input type="checkbox"> Period ends today</label>
+          <label><input type="checkbox"> Drink water</label>
+        </div>
+      </div>
+
+      <div class="symptoms">
+        <h2 style="font-size: 2em;">SYMPTOMS</h2>
+        <label><input type="checkbox" onclick="showSuggestion(this)" value="cramps"> Cramps (pain in your lower belly or lower back)</label>
+        <label><input type="checkbox" onclick="showSuggestion(this)" value="bloating"> Bloating (when your belly feels puffy)</label>
+        <label><input type="checkbox"> Breakouts (getting pimples)</label>
+        <label><input type="checkbox"> Sore breasts</label>
+        <label><input type="checkbox"> Feeling tired</label>
+        <label><input type="checkbox"> Mood swings (when your emotions change quickly or you feel sad, angry, or anxious)</label>
+      </div>
+    </div>
+
+    <div class="remainder-notes" id="suggestion-container">
+      <h2 style="font-size: 2em;">SUGGESTION</h2>
+      <textarea placeholder="Add your notes here..." readonly></textarea>
+    </div>
+  </main>
+
+  <script>
+    function showSuggestion(checkbox) {
+      const suggestionContainer = document.getElementById('suggestion-container');
+      const textarea = suggestionContainer.querySelector('textarea');
+
+      if (checkbox.checked && checkbox.value === 'cramps') {
+        textarea.value = "Place a heating pad on the lower back to get rid of back pain or soak in a warm bath, which can help relax the muscles in the abdomen, back, and legs.";
+      } else if (checkbox.checked && checkbox.value === 'bloating') {
+        textarea.value = "Potassium-rich foods that may reduce period bloating include: dark leafy greens, such as spinach.";
+      } else {
+        textarea.value = ""; // Clear suggestion if checkbox is unchecked or not 'cramps' or 'bloating'
+      }
+    }
+  </script>
+
+</body>
+</html>
